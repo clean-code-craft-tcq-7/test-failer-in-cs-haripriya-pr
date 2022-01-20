@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if $1; then
+if $1 $2; then
     echo "FALSE POSITIVE! Expected failure but succeeded"
     exit 1
 else
