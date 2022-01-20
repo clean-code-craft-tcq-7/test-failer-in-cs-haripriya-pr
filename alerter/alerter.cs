@@ -1,9 +1,7 @@
 ﻿using System;
 
-namespace AlerterSpace
-{
-    class Alerter
-    {
+namespace AlerterSpace {
+    class Alerter {
         static int alertFailureCount = 0;
         static int networkAlertStub(float celcius) {
             Console.WriteLine("ALERT: Temperature is {0} celcius", celcius);
@@ -23,8 +21,7 @@ namespace AlerterSpace
                 alertFailureCount += 0;
             }
         }
-        static void Main(string[] args)
-        {
+        static void Main(string[] args) {
             alertInCelcius(400.5f);
             alertInCelcius(303.6f);
             Console.WriteLine("{0} alerts failed.", alertFailureCount);

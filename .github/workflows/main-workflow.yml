@@ -13,3 +13,6 @@ jobs:
       - run: |
           cd alerter
           dotnet run
+      - run: |
+          cd misaligned
+          dotnet run
