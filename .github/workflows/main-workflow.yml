@@ -11,11 +11,11 @@ jobs:
       - name: Setup dotnet
         uses: actions/setup-dotnet@v1
       - run: |
-          cd alerter
+          cd tshirts
           bash ../.github/workflows/expectfail.sh dotnet run
       - run: |
           cd misaligned
           bash ../.github/workflows/expectfail.sh dotnet run
       - run: |
-          cd tshirts
+          cd alerter
           bash ../.github/workflows/expectfail.sh dotnet run
