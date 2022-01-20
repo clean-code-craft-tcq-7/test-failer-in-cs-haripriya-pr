@@ -1,4 +1,6 @@
-﻿namespace AlerterSpace
+﻿using System;
+
+namespace AlerterSpace
 {
     class Alerter
     {

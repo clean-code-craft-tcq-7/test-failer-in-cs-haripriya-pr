@@ -5,7 +5,7 @@ on: [push, pull_request]
 jobs:
   build:
     runs-on: ubuntu-latest
-    name: Fail on false positive
+    name: build
     steps:
       - uses: actions/checkout@v2
       - name: Setup dotnet
