@@ -16,3 +16,6 @@ jobs:
       - run: |
           cd misaligned
           dotnet run
+      - run: |
+          cd tshirts
+          dotnet run
