@@ -2,14 +2,20 @@ name: Build and Run
 
 on: [push, pull_request]
 
+env:
+  DOTNET_VERSION: '6.0.401'
+
 jobs:
   build:
     runs-on: ubuntu-latest
     name: build
     steps:
       - uses: actions/checkout@v2
-      - name: Setup dotnet
-        uses: actions/setup-dotnet@v1
+        # Install the .NET Core workload
+      - name: Install .NET Core
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: ${{ env.DOTNET_VERSION }}      
       - run: |
           cd tshirts
           bash ../.github/workflows/expectfail.sh dotnet run
