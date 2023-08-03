@@ -4,7 +4,7 @@ namespace TemperatureSpace
      /// This is a stub for a weather sensor. For the sake of testing 
      /// we create a stub that generates weather data and allows us to
      /// test the other parts of this application in isolation
-     /// without having to worry about the Sensor logic
+     /// without needing the actual Sensor during development
      /// </summary>
     internal class SensorStub : IWeatherSensor
     {
