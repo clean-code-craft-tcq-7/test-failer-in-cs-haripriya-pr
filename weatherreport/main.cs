@@ -33,8 +33,8 @@ namespace TemperatureSpace
             // to give high precipitation (>60) and low wind-speed (<50)
             IWeatherSensor sensor = new SensorStub();
 
-            // design the assert to expose the bug
-            // (function returns Sunny day, it should be Rainy)
+            // strengthen the assert to expose the bug
+            // (function returns Sunny day, it should predict rain)
             string report = Weather.Report(sensor);
             Debug.Assert(report != null);
         }
