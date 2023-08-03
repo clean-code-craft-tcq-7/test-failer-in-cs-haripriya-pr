@@ -10,7 +10,7 @@ Welcome to Test Driven Development. The positive cycle of Testability and Decomp
 
 This exercise has a set of buggy implementations. The implementations also have tests (asserts) which pass, despite the bugs. They are 'weak' tests. Such tests are ineffective - you will need to manually check the code anyway.
 
-Your task is to _strengthen the tests_ and make them all fail. **Do not fix the implementation. Do not pass the tests**
+Your task is to _strengthen the tests_ and make them all fail. You **can refactor** the code to separate the concerns and make it testable. **Do not fix the bug. Do not pass the tests yet**
 
 In this repository, the workflows are designed to make the Action fail when any of the tests pass.
 
@@ -20,9 +20,10 @@ In this repository, the workflows are designed to make the Action fail when any 
 
 `misaligned` tries to print a map from numbers to colors, as per [this Wiki](https://en.wikipedia.org/wiki/25-pair_color_code). However, the numeric values and the separator (`|`) are misaligned. The functionality is not efficiently testable - the fault needs human inspection. Think of separating the concerns and testing them individually.
 
-`weatherreport` reports weather with the weather data received from the weather sensor. The code stubs the weather data reading part, so that we can test without the weather sensor. However, there is a mistake in its error-handling and the test doesn't bother to check that part of the code. Adapt the code to cover the error condition and fail due to the mistake.
+`weatherreport` reports weather with the weather data received from the weather sensor. The code stubs the sensor, so that we can test without the weather sensor. However, there is a mistake in one of the conditions, but the sensor-stub does not
+give values that expose the mistake. Add a stub to do that.
 
 # Extra challenge
 
-The `weatherreport` mixes stub and test-code with production code. If we need to switch from the stub to integrate the real weather sensor communication, production code needs to be changed.
-Can you think of a way to separate things - so that the production code doesn't change while switching from the test-environment to the integration-environment?
+In several places, test-code is mixed with production code.
+Can you think of a way to separate things - so that the production code doesn't change while switching from the unit-test-environment to the integration-environment?
