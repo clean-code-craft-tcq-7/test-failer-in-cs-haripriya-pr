@@ -24,6 +24,7 @@ jobs:
         run: |
           cd misaligned
           bash ../.github/workflows/expectfail.sh dotnet run
-      - run: |
+      - name: weather-report
+        run: |
           cd weatherreport
           bash ../.github/workflows/expectfail.sh dotnet run
