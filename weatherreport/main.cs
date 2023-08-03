@@ -1,5 +1,4 @@
-﻿using System.Diagnostics;
-
+﻿
 namespace TemperatureSpace
 {
     class Weather
@@ -20,7 +19,7 @@ namespace TemperatureSpace
             return report;
         }
 
-        private static void testRainy()
+        private static void TestRainy()
         {
             IWeatherSensor sensor = new SensorStub();
             string report = Weather.Report(sensor);
@@ -28,11 +27,10 @@ namespace TemperatureSpace
             Debug.Assert(report.Contains("rain"));
         }
 
-        private static void testHighPrecipitation()
+        private static void TestHighPrecipitation()
         {
-            // add a new stub:
-            // This instance of stub needs to give
-            // high precipitation (>60) and low wind-speed (<50)
+            // This instance of stub needs to be different-
+            // to give high precipitation (>60) and low wind-speed (<50)
             IWeatherSensor sensor = new SensorStub();
 
             // design the assert to expose the bug
@@ -50,8 +48,8 @@ namespace TemperatureSpace
             // Note 2: Understand how the sensor stub is designed
             // Stub only gives a single value now, which is pretty much useless
             // think of ways to test high precipitation condition 
-            testRainy();
-            testHighPrecipitation();
+            TestRainy();
+            TestHighPrecipitation();
             Console.WriteLine("All is well (maybe!)");
         }
     }
