@@ -16,12 +16,14 @@ jobs:
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: ${{ env.DOTNET_VERSION }}      
-      - run: |
+      - name: tshirts
+        run: |
           cd tshirts
           bash ../.github/workflows/expectfail.sh dotnet run
-      - run: |
+      - name: misaligned
+        run: |
           cd misaligned
           bash ../.github/workflows/expectfail.sh dotnet run
       - run: |
-          cd alerter
+          cd weatherreport
           bash ../.github/workflows/expectfail.sh dotnet run
