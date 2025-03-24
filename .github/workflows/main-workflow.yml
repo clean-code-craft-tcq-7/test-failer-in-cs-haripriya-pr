@@ -16,14 +16,17 @@ jobs:
         with:
           dotnet-version: ${{ env.DOTNET_VERSION }}      
       - name: tshirts
+        if: always()
         run: |
           cd tshirts
           dotnet run
       - name: misaligned
+        if: always()
         run: |
           cd misaligned
           dotnet run
       - name: weather-report
+        if: always()
         run: |
           cd weatherreport
           dotnet run
