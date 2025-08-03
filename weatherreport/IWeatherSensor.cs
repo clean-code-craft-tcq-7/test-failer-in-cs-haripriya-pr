@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace TemperatureSpace
+﻿namespace TemperatureSpace
 {
     internal interface IWeatherSensor
     {
