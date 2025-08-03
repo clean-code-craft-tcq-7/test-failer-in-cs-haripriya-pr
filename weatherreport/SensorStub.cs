@@ -1,5 +1,4 @@
-﻿
-namespace TemperatureSpace
+﻿namespace TemperatureSpace
 {    /// <summary>
      /// This is a stub for a weather sensor. For the sake of testing 
      /// we create a stub that generates weather data and allows us to
