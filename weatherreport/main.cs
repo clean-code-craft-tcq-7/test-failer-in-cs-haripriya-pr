@@ -29,57 +29,11 @@ namespace TemperatureSpace
             return report;
         }
 
-        private static void TestHighTemperature()
+        private static void TestWeather(IWeatherSensor sensor, string weatherResult)
         {
-            IWeatherSensor sensor = new SensorStub3();
             string report = Weather.Report(sensor);
             Console.WriteLine(report);
-            Debug.Assert(report.Contains("sunny", StringComparison.OrdinalIgnoreCase));
-        }
-
-        private static void TestRainy()
-        {
-            IWeatherSensor sensor = new SensorStub();
-            string report = Weather.Report(sensor);
-            Console.WriteLine(report);
-            Debug.Assert(report.Contains("rain", StringComparison.OrdinalIgnoreCase));
-        }
-
-        private static void TestHighPrecipitation()
-        {
-            // This instance of stub needs to be different-
-            // to give high precipitation (>60) and low wind-speed (<50)
-            IWeatherSensor sensor = new SensorStub2();
-
-            // strengthen the assert to expose the bug
-            // (function returns Sunny day, it should predict rain)
-            string report = Weather.Report(sensor);
-            Debug.Assert(report != null);
-            Debug.Assert(report.Contains("rain",StringComparison.OrdinalIgnoreCase));
-        }
-
-        private static void TestCloudy()
-        {
-            IWeatherSensor sensor = new SensorStub4();
-            string report = Weather.Report(sensor);
-            Console.WriteLine(report);
-            Debug.Assert(report.Contains("cloudy", StringComparison.OrdinalIgnoreCase));
-        }
-
-        private static void TestLowTemperature()
-        {
-            IWeatherSensor sensor = new SensorStub5();
-            string report = Weather.Report(sensor);
-            Console.WriteLine(report);
-            Debug.Assert(report.Contains("Cold", StringComparison.OrdinalIgnoreCase));
-        }
-
-        private static void TestHighHumidity()
-        {
-            IWeatherSensor sensor = new SensorStub6();
-            string report = Weather.Report(sensor);
-            Console.WriteLine(report);
-            Debug.Assert(report.Contains("humid", StringComparison.OrdinalIgnoreCase));
+            Debug.Assert(report.Contains(weatherResult, StringComparison.OrdinalIgnoreCase));
         }
 
         static void Main(string[] args)
@@ -91,12 +45,12 @@ namespace TemperatureSpace
             // Note 2: Understand how the sensor stub is designed
             // Stub only gives a single value now, which is pretty much useless
             // think of ways to test high precipitation condition 
-            TestRainy();
-            TestHighPrecipitation();
-            TestHighTemperature();
-            TestCloudy();
-            TestLowTemperature();
-            TestHighHumidity();
+            TestWeather(new SensorStub(), "rain");
+            TestWeather(new SensorStub2(), "rain");
+            TestWeather(new SensorStub3(), "sunny");
+            TestWeather(new SensorStub4(), "cloudy");
+            TestWeather(new SensorStub5(), "cold");
+            TestWeather(new SensorStub6(), "humid");
             Console.WriteLine("All is well (maybe!)");
         }
     }
