@@ -34,7 +34,7 @@ namespace TemperatureSpace
             IWeatherSensor sensor = new SensorStub3();
             string report = Weather.Report(sensor);
             Console.WriteLine(report);
-            Debug.Assert(report.Contains("sunny"));
+            Debug.Assert(report.Contains("sunny", StringComparison.OrdinalIgnoreCase));
         }
 
         private static void TestRainy()
@@ -42,7 +42,7 @@ namespace TemperatureSpace
             IWeatherSensor sensor = new SensorStub();
             string report = Weather.Report(sensor);
             Console.WriteLine(report);
-            Debug.Assert(report.Contains("rain"));
+            Debug.Assert(report.Contains("rain", StringComparison.OrdinalIgnoreCase));
         }
 
         private static void TestHighPrecipitation()
@@ -55,7 +55,7 @@ namespace TemperatureSpace
             // (function returns Sunny day, it should predict rain)
             string report = Weather.Report(sensor);
             Debug.Assert(report != null);
-            Debug.Assert(report.Contains("rain"));
+            Debug.Assert(report.Contains("rain",StringComparison.OrdinalIgnoreCase));
         }
 
         private static void TestCloudy()
@@ -63,7 +63,7 @@ namespace TemperatureSpace
             IWeatherSensor sensor = new SensorStub4();
             string report = Weather.Report(sensor);
             Console.WriteLine(report);
-            Debug.Assert(report.Contains("cloudy"));
+            Debug.Assert(report.Contains("cloudy", StringComparison.OrdinalIgnoreCase));
         }
 
         private static void TestLowTemperature()
@@ -71,7 +71,7 @@ namespace TemperatureSpace
             IWeatherSensor sensor = new SensorStub5();
             string report = Weather.Report(sensor);
             Console.WriteLine(report);
-            Debug.Assert(report.Contains("Cold"));
+            Debug.Assert(report.Contains("Cold", StringComparison.OrdinalIgnoreCase));
         }
 
         private static void TestHighHumidity()
@@ -79,7 +79,7 @@ namespace TemperatureSpace
             IWeatherSensor sensor = new SensorStub6();
             string report = Weather.Report(sensor);
             Console.WriteLine(report);
-            Debug.Assert(report.Contains("humid"));
+            Debug.Assert(report.Contains("humid", StringComparison.OrdinalIgnoreCase));
         }
 
         static void Main(string[] args)

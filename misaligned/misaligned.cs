@@ -35,7 +35,7 @@ namespace MisalignedSpace {
 
         static string ColorMap(int i, int j)
         {
-            List<string> index = new List<int>(Enumerable.Range(1, 5 * 5)).ConvertAll<string>(x => x.ToString());
+            List<string> index = new List<int>(Enumerable.Range(1, 5 * 5)).ConvertAll(x => x.ToString());
             int maxIndex = ColumnLength(index);
             int maxMajorColor = ColumnLength(_majorColors.ToList());
             int maxMinorColor = ColumnLength(_minorColors.ToList());
