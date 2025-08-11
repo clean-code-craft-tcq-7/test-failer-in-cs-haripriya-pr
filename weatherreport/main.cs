@@ -1,5 +1,4 @@
-﻿using System;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 
 namespace TemperatureSpace
 {
@@ -9,7 +8,7 @@ namespace TemperatureSpace
         {
             int precipitation = sensor.Precipitation();
             // precipitation < 20 is a sunny day
-            string report = "Sunny Day";
+            string report = string.Empty;
 
             if (sensor.TemperatureInC() > 25)
             {
@@ -17,28 +16,24 @@ namespace TemperatureSpace
                     report = "Partly Cloudy";
                 else if (sensor.WindSpeedKMPH() > 50)
                     report = "Alert, Stormy with heavy rain";
+                else if (precipitation >= 60)
+                    report = "Rainy day";
+                else if (sensor.Humidity() > 60)
+                    report = "Very humid";
+                else
+                    report = "Sunny Day";
+            }
+            else {
+                report = "Cold day";
             }
             return report;
         }
 
-        private static void TestRainy()
+        private static void TestWeather(IWeatherSensor sensor, string weatherResult)
         {
-            IWeatherSensor sensor = new SensorStub();
             string report = Weather.Report(sensor);
             Console.WriteLine(report);
-            Debug.Assert(report.Contains("rain"));
-        }
-
-        private static void TestHighPrecipitation()
-        {
-            // This instance of stub needs to be different-
-            // to give high precipitation (>60) and low wind-speed (<50)
-            IWeatherSensor sensor = new SensorStub();
-
-            // strengthen the assert to expose the bug
-            // (function returns Sunny day, it should predict rain)
-            string report = Weather.Report(sensor);
-            Debug.Assert(report != null);
+            Debug.Assert(report.Contains(weatherResult, StringComparison.OrdinalIgnoreCase));
         }
 
         static void Main(string[] args)
@@ -50,8 +45,12 @@ namespace TemperatureSpace
             // Note 2: Understand how the sensor stub is designed
             // Stub only gives a single value now, which is pretty much useless
             // think of ways to test high precipitation condition 
-            TestRainy();
-            TestHighPrecipitation();
+            TestWeather(new SensorStub(), "rain");
+            TestWeather(new SensorStub2(), "rain");
+            TestWeather(new SensorStub3(), "sunny");
+            TestWeather(new SensorStub4(), "cloudy");
+            TestWeather(new SensorStub5(), "cold");
+            TestWeather(new SensorStub6(), "humid");
             Console.WriteLine("All is well (maybe!)");
         }
     }
