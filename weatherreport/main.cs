@@ -8,7 +8,7 @@ namespace TemperatureSpace
         {
             int precipitation = sensor.Precipitation();
             // precipitation < 20 is a sunny day
-            string report = "Sunny Day";
+            string report = string.Empty;
 
             if (sensor.TemperatureInC() > 25)
             {
@@ -16,8 +16,25 @@ namespace TemperatureSpace
                     report = "Partly Cloudy";
                 else if (sensor.WindSpeedKMPH() > 50)
                     report = "Alert, Stormy with heavy rain";
+                else if (precipitation >= 60)
+                    report = "Rainy day";
+                else if (sensor.Humidity() > 60)
+                    report = "Very humid";
+                else
+                    report = "Sunny Day";
+            }
+            else {
+                report = "Cold day";
             }
             return report;
+        }
+
+        private static void TestHighTemperature()
+        {
+            IWeatherSensor sensor = new SensorStub3();
+            string report = Weather.Report(sensor);
+            Console.WriteLine(report);
+            Debug.Assert(report.Contains("sunny"));
         }
 
         private static void TestRainy()
@@ -32,13 +49,37 @@ namespace TemperatureSpace
         {
             // This instance of stub needs to be different-
             // to give high precipitation (>60) and low wind-speed (<50)
-            IWeatherSensor sensor = new NewSensorStub();
+            IWeatherSensor sensor = new SensorStub2();
 
             // strengthen the assert to expose the bug
             // (function returns Sunny day, it should predict rain)
             string report = Weather.Report(sensor);
             Debug.Assert(report != null);
             Debug.Assert(report.Contains("rain"));
+        }
+
+        private static void TestCloudy()
+        {
+            IWeatherSensor sensor = new SensorStub4();
+            string report = Weather.Report(sensor);
+            Console.WriteLine(report);
+            Debug.Assert(report.Contains("cloudy"));
+        }
+
+        private static void TestLowTemperature()
+        {
+            IWeatherSensor sensor = new SensorStub5();
+            string report = Weather.Report(sensor);
+            Console.WriteLine(report);
+            Debug.Assert(report.Contains("Cold"));
+        }
+
+        private static void TestHighHumidity()
+        {
+            IWeatherSensor sensor = new SensorStub6();
+            string report = Weather.Report(sensor);
+            Console.WriteLine(report);
+            Debug.Assert(report.Contains("humid"));
         }
 
         static void Main(string[] args)
@@ -52,6 +93,10 @@ namespace TemperatureSpace
             // think of ways to test high precipitation condition 
             TestRainy();
             TestHighPrecipitation();
+            TestHighTemperature();
+            TestCloudy();
+            TestLowTemperature();
+            TestHighHumidity();
             Console.WriteLine("All is well (maybe!)");
         }
     }

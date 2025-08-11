@@ -25,16 +25,21 @@ namespace MisalignedSpace {
 
         static int PrintColorMap() {
             int i = 0, j = 0;
+            for(i = 0; i < 5; i++) {
+                for(j = 0; j < 5; j++) {
+                    Console.WriteLine(ColorMap(i,j));
+                }
+            }
+            return i * j;
+        }
+
+        static string ColorMap(int i, int j)
+        {
             List<string> index = new List<int>(Enumerable.Range(1, 5 * 5)).ConvertAll<string>(x => x.ToString());
             int maxIndex = ColumnLength(index);
             int maxMajorColor = ColumnLength(_majorColors.ToList());
             int maxMinorColor = ColumnLength(_minorColors.ToList());
-            for(i = 0; i < 5; i++) {
-                for(j = 0; j < 5; j++) {
-                    Console.WriteLine("{0} | {1} | {2}", AddExtraSpace(ColorIndexToPair(i,j).ToString(),maxIndex), AddExtraSpace(GetMajorColors(i),maxMajorColor), AddExtraSpace(GetMinorColors(j),maxMinorColor));
-                }
-            }
-            return i * j;
+            return $"{AddExtraSpace(ColorIndexToPair(i, j).ToString(), maxIndex)} | {AddExtraSpace(GetMajorColors(i), maxMajorColor)} | {AddExtraSpace(GetMinorColors(j), maxMinorColor)}";
         }
 
         static string AddExtraSpace(string value, int maxLength)
@@ -66,6 +71,8 @@ namespace MisalignedSpace {
             Debug.Assert(ColumnLength(_minorColors.ToList()) == 6);
             Debug.Assert(AddExtraSpace("25", 2) == "25");
             Debug.Assert(AddExtraSpace("Blue", 6) == "Blue  ");
+            Debug.Assert(ColorMap(1, 1) == "7  | Red    | Orange");
+            Debug.Assert(ColorMap(4, 4) == "25 | Violet | Slate ");
             //Debug.Assert(GetMajorColors(2).Length == ColumnLength(_majorColors.ToList()));
             Console.WriteLine("All is well (maybe!)");
         }

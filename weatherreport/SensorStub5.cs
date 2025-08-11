@@ -1,20 +1,20 @@
 ﻿namespace TemperatureSpace
 {
-    internal class NewSensorStub : IWeatherSensor
+    internal class SensorStub5 : IWeatherSensor
     {
         int IWeatherSensor.Humidity()
         {
-            return 72;
+            return 50;
         }
 
         int IWeatherSensor.Precipitation()
         {
-            return 70;
+            return 55;
         }
 
         double IWeatherSensor.TemperatureInC()
         {
-            return 26;
+            return 24;
         }
 
         int IWeatherSensor.WindSpeedKMPH()
