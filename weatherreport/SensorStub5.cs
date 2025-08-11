@@ -9,7 +9,7 @@
 
         int IWeatherSensor.Precipitation()
         {
-            return 55;
+            return 53;
         }
 
         double IWeatherSensor.TemperatureInC()
