@@ -4,17 +4,17 @@
     {
         int IWeatherSensor.Humidity()
         {
-            return 72;
+            return 74;
         }
 
         int IWeatherSensor.Precipitation()
         {
-            return 70;
+            return 71;
         }
 
         double IWeatherSensor.TemperatureInC()
         {
-            return 26;
+            return 27;
         }
 
         int IWeatherSensor.WindSpeedKMPH()
